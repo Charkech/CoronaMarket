@@ -30,6 +30,7 @@ public class SalesProfitLoss extends JFrame {
 	private JPanel contentPane;
 	private JButton btnBackToManager;
 	private JTable table1;
+	private JButton btnLoad;
 
 	/**
 	 * Launch the application.
@@ -64,24 +65,24 @@ public class SalesProfitLoss extends JFrame {
 		lblSales.setBounds(158, 0, 361, 64);
 		contentPane.add(lblSales);
 		
-		JButton btnLoad = new JButton("Load Details");
+		btnLoad = new JButton("Load Details");
 		Image img11= new ImageIcon(this.getClass().getResource("/load.png")).getImage();
 		btnLoad.setIcon(new ImageIcon(img11));
 		btnLoad.setBackground(UIManager.getColor("Button.background"));
-		btnLoad.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					String query="select * from ProfitLoss";
-					PreparedStatement pst=connection.prepareStatement(query);
-					ResultSet rs=pst.executeQuery();
-					table1.setModel(DbUtils.resultSetToTableModel(rs));
-					
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-				}
-			
-		});
+//		btnLoad.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				try {
+//					String query="select * from ProfitLoss";
+//					PreparedStatement pst=connection.prepareStatement(query);
+//					ResultSet rs=pst.executeQuery();
+//					table1.setModel(DbUtils.resultSetToTableModel(rs));
+//					
+//					} catch (Exception e1) {
+//						e1.printStackTrace();
+//					}
+//				}
+//			
+//		});
 		btnLoad.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnLoad.setBounds(10, 73, 233, 44);
 		contentPane.add(btnLoad);
@@ -117,5 +118,16 @@ public class SalesProfitLoss extends JFrame {
 		}
 		public void setListenerProfitLoss(ActionListener actionlistener) {
 			this.btnBackToManager.addActionListener(actionlistener);
+			this.btnLoad.addActionListener(actionlistener);
 	}
+		public void setRsToTable(ResultSet rs) {
+			table1.setModel(DbUtils.resultSetToTableModel(rs));
+		}
+		public JButton getBtnBackToManager() {
+			return btnBackToManager;
+		}
+		public JButton getBtnLoad() {
+			return btnLoad;
+		}
+		
 }

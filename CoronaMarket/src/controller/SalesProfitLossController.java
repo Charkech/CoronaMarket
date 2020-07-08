@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.SalesProfitLossModel;
+import net.proteanit.sql.DbUtils;
 import view.SalesProfitLoss;
 public class SalesProfitLossController {
 	private SalesProfitLoss view;
@@ -18,10 +19,14 @@ public class SalesProfitLossController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
+			if (e.getSource()==view.getBtnBackToManager()) {
 			model.BackToManagerPage();
 			view.setVisible(false);
 			view.dispose();
+			}
+			else if (e.getSource()==view.getBtnLoad()) {
+				view.setRsToTable(model.getProfitAndLossList());
+			}
 		}
 		
 	}

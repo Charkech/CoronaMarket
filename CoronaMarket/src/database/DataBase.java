@@ -4,6 +4,7 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 
 import classes.Order;
+import net.proteanit.sql.DbUtils;
 
 public class DataBase {
 	private static DataBase dataBase_instance=null;
@@ -98,6 +99,19 @@ public class DataBase {
 			}
 			return false;
 		}
+		
+		public ResultSet getProfitAndLossList() {
+			try {
+				Connection connection=this.connect();
+				String query="select * from ProfitLoss";
+				PreparedStatement pst=connection.prepareStatement(query);
+				ResultSet rs=pst.executeQuery();
+				return rs;
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					return null;
+				}
+			}
 		
 		public ResultSet getSupllyList() {
 			

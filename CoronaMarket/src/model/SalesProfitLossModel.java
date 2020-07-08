@@ -1,4 +1,6 @@
 package model;
+import java.sql.ResultSet;
+
 import database.DataBase;
 import model.FrameManager;
 public class SalesProfitLossModel {
@@ -13,5 +15,7 @@ public class SalesProfitLossModel {
 	public void BackToManagerPage() {
 		fm.MoveToManagerPage();
 	}
-	
+	public ResultSet getProfitAndLossList() {
+		return db.getProfitAndLossList();
+	}
 }
