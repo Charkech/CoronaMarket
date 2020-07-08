@@ -138,4 +138,34 @@ public class DataBase {
 				return false;
 			}
 		}
+		
+		public Order findOrderById(String ProductId) {
+			try {
+				Connection connection=this.connect();
+				String query="SELECT * FROM Orders WHERE ProductID = ?";
+				PreparedStatement pst=connection.prepareStatement(query);
+				pst.setString(1, ProductId);
+				ResultSet rs = pst.executeQuery();
+				
+				String status = rs.getString(1);
+				String id = rs.getString(2);
+				String name = rs.getString(3);
+				String department = rs.getString(4);
+				String quantity = rs.getString(5);
+				String subDepartment = rs.getString(6);
+				String price = rs.getString(7);
+				
+				Order order = new Order(status, id, name, department, quantity, subDepartment, price);
+				pst.close();
+				return order;
+				
+				
+		
+			}
+			catch (Exception e1) {
+				e1.printStackTrace();
+				return null;
+			
+			}
+		}
 }
