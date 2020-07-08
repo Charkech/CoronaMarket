@@ -115,7 +115,7 @@ public class DataBase {
 				}
 		}
 		
-		
+
 		public boolean addNewOrder(Order order) {
 			try {
 				Connection connection=this.connect();

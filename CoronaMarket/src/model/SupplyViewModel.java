@@ -10,7 +10,7 @@ public class SupplyViewModel {
 	
 	public SupplyViewModel() {
 		db=DataBase.getInstance();
-		fm=FrameManager.getInstance();
+		fm=FrameManager.getInstance();	
 	}
 	public void backToManagerPage() {
 		fm.MoveToManagerPage();
